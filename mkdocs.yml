@@ -67,6 +67,7 @@ nav:
   - Skills: skills/security-harness-creator.md
   - Frontier Harness Design Breakdowns:
       - "PentAGI": frontier/pentagi-breakdown.md
+      - "AHP and A2E": frontier/ahp-a2e-breakdown.md
   - Open Problems: open-problems.md
   - Library: resources.md
   - Try Harness ↗: https://github.com/Nitin13-git/learn-harness-security/tree/main/resources
