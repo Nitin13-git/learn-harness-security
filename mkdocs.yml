@@ -59,4 +59,9 @@ nav:
       - "E02 — EvoBench end to end": experiments/e02-evobench-end-to-end.md
   - Projects:
       - "P01 — Verify, don't trust": projects/p01-verify-dont-trust.md
-  - Resources: resources.md
+  - Skills: skills/security-harness-creator.md
+  - Frontier Harness Design Breakdowns:
+      - "PentAGI": frontier/pentagi-breakdown.md
+  - Open Problems: open-problems.md
+  - Library: resources.md
+  - Try Harness ↗: https://github.com/Nitin13-git/learn-harness-security/tree/main/resources
