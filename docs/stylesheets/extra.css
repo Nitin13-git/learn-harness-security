@@ -1,0 +1,66 @@
+/* Security-harness palette, matching the badge colors already used on
+   github.com/Nitin13-git: State=blue, Verification=pink, Scope=purple,
+   Lifecycle=amber, plus the black/red security theme. */
+
+:root {
+  --harness-state: #118ab2;
+  --harness-verification: #ef476f;
+  --harness-scope: #7209b7;
+  --harness-lifecycle: #ffb703;
+}
+
+/* Header: subtle black-to-red gradient instead of flat black */
+.md-header {
+  background: linear-gradient(90deg, #0d0d0d 0%, #1a0505 60%, #3a0a0a 100%);
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background: linear-gradient(90deg, #111111 0%, #2a0a0a 60%, #4a0f0f 100%);
+}
+
+/* Tabs bar (top-level nav) picks up the same gradient, slightly lighter */
+.md-tabs {
+  background: linear-gradient(90deg, #161616 0%, #2a0a0a 100%);
+}
+
+/* Links: red accent with a visible hover state instead of the default flat tone */
+.md-typeset a {
+  color: #ff6b6b;
+  text-decoration-thickness: 1px;
+}
+.md-typeset a:hover {
+  color: #ffa8a8;
+}
+
+/* Admonitions (used for the Karpathy quote, provenance notes, etc.)
+   get a terminal-ish left border instead of Material's default blue */
+.md-typeset .admonition,
+.md-typeset details {
+  border-left: 4px solid #ff6b6b;
+}
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: rgba(255, 107, 107, 0.08);
+}
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-left-color: var(--harness-state);
+}
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset details.note > summary {
+  background-color: rgba(17, 138, 178, 0.1);
+}
+
+/* Mermaid diagrams: dark panel so node boxes don't look washed out
+   against the slate background */
+.mermaid {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+/* Inline code gets a faint red tint instead of plain grey, tying code
+   spans visually to the red accent used throughout */
+.md-typeset code {
+  background-color: rgba(255, 107, 107, 0.08);
+}
