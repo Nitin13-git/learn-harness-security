@@ -5,6 +5,19 @@ prompt, a `SKILL.md`, or any agent-skill mechanism that accepts Markdown
 instructions) to scaffold a new security-benchmark harness repo using the
 stack from this course, instead of starting from a blank file every time.
 
+```mermaid
+flowchart TD
+    Start([New security-benchmark task]) --> S1["1. State — set up ReceiptLedger<br/>before anything runs"]
+    S1 --> S2["2. Scope — declare Scope,<br/>deny by default"]
+    S2 --> S3["3. Verification — pick the<br/>independent channel first"]
+    S3 --> S4["4. Lifecycle — init/checkpoint/<br/>teardown receipts"]
+    S4 --> S5["5. Write AGENTS.md<br/>from the template"]
+    S5 --> Recur{Task recurs or<br/>spans models?}
+    Recur -->|yes| S6["6. Wire up EvoBench —<br/>observe() on every failure"]
+    Recur -->|no| Done([Scaffold complete])
+    S6 --> Done
+```
+
 ```markdown
 ---
 name: security-harness-creator

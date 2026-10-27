@@ -13,6 +13,37 @@ system, not a toy, built by a different team, independently converging on
     README as of this writing. This is read-only analysis — nothing here
     was built by or tested against PentAGI's actual code.
 
+## Coverage at a glance
+
+```mermaid
+flowchart TD
+    subgraph HCP["This course (HCP)"]
+        direction LR
+        HS[State: StateStore] --- HV[Verification: Verifier] --- HSc[Scope: ScopeEnforcer] --- HL[Lifecycle: SessionLifecycle]
+    end
+
+    subgraph Pentagi["PentAGI, as documented"]
+        direction LR
+        PS["State: Postgres+pgvector,<br/>3 memory kinds — strong"] --- PV["Verification: agent-reported<br/>status + Reflector — weak"]
+        PV --- PSc["Scope: Docker sandbox (strong) +<br/>prompt-only target scope (weak)"]
+        PSc --- PL["Lifecycle: Orchestrator phases +<br/>Planner/Adviser — strong"]
+    end
+
+    HS -.inspired by, more elaborate.-> PS
+    HV -.gap PentAGI doesn't close.-> PV
+    HSc -.split: infra strong, task weak.-> PSc
+    HL -.converges independently.-> PL
+
+    style PV fill:#3a1a1a,stroke:#ef476f
+```
+
+PentAGI is stronger than this course's reference implementation on raw
+state modeling, comparable on lifecycle, and split on scope — strong at the
+infrastructure layer, weak at the task layer. Verification is the clearest
+gap: nothing in the documented design closes the "don't trust the agent's
+own report" loop that [L03](../lectures/l03-verification-you-can-trust.md)
+treats as non-negotiable.
+
 ## State
 
 PentAGI's data model is a hierarchy: `Flow → Task → SubTask → Action`, with

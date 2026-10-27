@@ -26,7 +26,7 @@ reference implementation, not a fork of any existing course.
 
 ## Structure
 
-- [`docs/lectures/`](docs/lectures/) — 6 lectures, one question each, with
+- [`docs/lectures/`](docs/lectures/) — 8 lectures, one question each, with
   Mermaid diagrams — built and deployed as a [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)
   site via GitHub Pages.
 - [`docs/experiments/`](docs/experiments/) — real data and real test output,
@@ -46,7 +46,8 @@ mkdocs serve
 
 ## Status
 
-6 lectures, 1 hands-on project, 2 data-backed experiments. Treat this as a
+8 lectures, 1 hands-on project, 2 data-backed experiments, a reusable
+skill, and a frontier harness breakdown. Treat this as a
 living draft — more is coming as the underlying tools mature.
 
 ## License

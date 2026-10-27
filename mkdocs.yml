@@ -57,6 +57,8 @@ nav:
       - "L04 — Context is not free": lectures/l04-context-is-not-free.md
       - "L05 — The four subsystems as a protocol": lectures/l05-the-four-subsystems-as-a-protocol.md
       - "L06 — Closing the loop: EvoBench": lectures/l06-closing-the-loop-evobench.md
+      - "L07 — Loop engineering for security benchmarks": lectures/l07-loop-engineering-for-security-benchmarks.md
+      - "L08 — Graph engineering: multi-target campaigns": lectures/l08-graph-engineering-multi-target-campaigns.md
   - Experiments:
       - "E01 — Pallas Model Shootout": experiments/e01-pallas-model-shootout.md
       - "E02 — EvoBench end to end": experiments/e02-evobench-end-to-end.md

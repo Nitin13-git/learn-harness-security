@@ -57,6 +57,6 @@ See [Experiment E02](../experiments/e02-evobench-end-to-end.md) for this
 loop running against a real (if tiny) failure, with real test output — not
 a hypothetical.
 
-**This is the last lecture.** From here: work through
-[Project P01](../projects/p01-verify-dont-trust.md) hands-on, then read
-both experiments to see the same ideas applied to real, larger-scale data.
+**Next:** everything so far has been one run at a time. L07 and L08 cover
+what changes when the harness runs continuously and against multiple
+targets at once — [L07 — Loop engineering](l07-loop-engineering-for-security-benchmarks.md).

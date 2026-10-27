@@ -41,7 +41,9 @@ flowchart TD
     L04 --> L02
     L03 --> L05[L05 — The four subsystems<br/>as a protocol]
     L05 --> L06[L06 — Closing the loop:<br/>EvoBench]
-    L06 --> P01[Project P01 —<br/>Verify, don't trust]
+    L06 --> L07[L07 — Loop engineering]
+    L07 --> L08[L08 — Graph engineering:<br/>multi-target campaigns]
+    L08 --> P01[Project P01 —<br/>Verify, don't trust]
     P01 --> E01[Experiment E01 —<br/>Pallas Model Shootout]
     P01 --> E02[Experiment E02 —<br/>EvoBench end to end]
 ```
@@ -63,5 +65,6 @@ with every piece, not just the theory.
 
 ## Status
 
-Early. 6 lectures, 1 hands-on project, 2 data-backed experiments. Treat this
+Early. 8 lectures, 1 hands-on project, 2 data-backed experiments, a skill,
+and a frontier harness breakdown. Treat this
 as a living draft — more is coming as the underlying tools mature.

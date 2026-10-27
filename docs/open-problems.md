@@ -4,6 +4,26 @@ Things this course's own tools don't solve yet, written down honestly
 instead of glossed over. If you want to extend this stack rather than just
 use it, these are the real gaps.
 
+```mermaid
+flowchart LR
+    V[Verification] --> P1[1. Verification that<br/>isn't a string match]
+    V --> P3[3. Findings that need<br/>human judgment]
+    S[Scope] --> P2[2. Scope that negotiates<br/>instead of being declared]
+    L[Lifecycle] --> P4[4. Cross-harness<br/>session handoff]
+    St[State] --> P4
+    Meta[Meta: the benchmark itself] --> P5[5. Benchmarking<br/>the benchmark]
+
+    style P1 fill:#3a1a1a,stroke:#ef476f
+    style P3 fill:#3a1a1a,stroke:#ef476f
+    style P2 fill:#2a1a3a,stroke:#7209b7
+    style P4 fill:#1a2a3a,stroke:#118ab2
+    style P5 fill:#2a2a1a,stroke:#ffb703
+```
+
+Four of five problems map cleanly onto one HCP subsystem each; #5
+(benchmarking the benchmark) doesn't belong to any single one — it's a
+property of the whole harness, not a missing interface.
+
 ## 1. Verification that isn't a string match
 
 [EvoBench](lectures/l06-closing-the-loop-evobench.md)'s mined regression
