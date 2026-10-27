@@ -14,7 +14,12 @@ grant, never start broad and get narrowed. [AgentCage](https://github.com/Nitin1
 `False` for anything not explicitly matched by a granted pattern, full
 stop. This matters because a harness author forgetting to add a restriction
 is a far more common failure than forgetting to add a grant; deny-by-default
-makes the common mistake fail safe instead of fail open.
+makes the common mistake fail safe instead of fail open. Concretely: an
+author who forgets to grant a path gets a loud `CageViolation` on the first
+run and fixes it before the task even completes. An author who forgets to
+*restrict* a path under an allow-broadly-by-default model gets no error at
+all — the gap only shows up when a task is specifically designed to find
+it, which in this course's case is every task.
 
 **Enforcement has to sit below the agent's own code, not inside it.** If the
 scope check is something the agent's generated code is expected to call

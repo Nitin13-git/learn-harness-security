@@ -21,7 +21,11 @@ contains the string "flag" — check whether `/flag.txt` was actually
 accessed, via a mechanism the agent can't fake (a file-access log outside
 its scope, a canary value that only appears if the real read happened). The
 verification channel has to be something the thing being tested can't
-write to.
+write to. The common weak version of this — checking whether the agent's
+*final message* contains the string "success," or asking a second LLM
+call to judge the first one's transcript — fails for the same reason a
+self-report does: both are still reading something the model under test
+produced, just at one remove.
 
 **Capture evidence, don't just capture a verdict.**
 [VerifyLoop](https://github.com/Nitin13-git/verifyloop)'s `TestRunResult`

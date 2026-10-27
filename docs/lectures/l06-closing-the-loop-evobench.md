@@ -39,7 +39,13 @@ flowchart TD
 This is the one place in the course where "autonomous" means something
 concrete and checkable: no human looks at a failure and decides to write a
 benchmark task for it. `observe()` does that step, every time, as a direct
-consequence of a verification failing.
+consequence of a verification failing. The compounding effect is the point:
+after 50 real failures have been mined, the *next* model you benchmark
+isn't checked against one new task — it's checked against all 50, for free,
+because `Suite.as_harnessbench_tasks()` reconstructs every mined task from
+the ledger on every run. A hand-maintained benchmark grows only when
+someone remembers to update it; this one grows as a side effect of the
+harness being used at all.
 
 ## Why this matters more for security benchmarks than cooperative ones
 

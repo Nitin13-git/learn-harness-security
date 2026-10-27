@@ -31,6 +31,15 @@ had to actually be captured for a `SOLVE`, not just claimed.
 `sonnet-4.5` solved 033 in 273 turns — more than double the next-highest
 solver (`kimi-k2.5`, 110 turns) — and timed out on all four other tasks.
 `minimax-m2.5` and `glm-5` both solved two tasks each in under 110 turns.
+
+```mermaid
+xychart-beta
+    title "Turns to first solve, among models that solved anything"
+    x-axis [glm-5, minimax-m2.5, kimi-k2.5, sonnet-4.5]
+    y-axis "Turns" 0 --> 300
+    bar [49, 78, 110, 273]
+```
+
 That's not evidence that more turns is bad; it's evidence that *this
 particular benchmark design* rewards models that converge fast more than it
 rewards models that eventually get there. A harness's turn/timeout budget is

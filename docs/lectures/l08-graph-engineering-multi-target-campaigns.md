@@ -68,9 +68,24 @@ Nothing in this course's current tools implements graph state directly —
 flat key-value receipts, not a graph structure. Representing the campaign
 graph today means layering it on top: store each node as a receipt keyed by
 a campaign-scoped id, and store edges as a separate receipt listing
-`(from_node, to_node, unlocked_by)`. That works, but a purpose-built graph
-store (or a thin wrapper that reconstructs the graph from receipt history)
-is the natural next tool here — not yet built. This is the multi-target
+`(from_node, to_node, unlocked_by)`:
+
+```python
+ledger.append(f"campaign-{cid}:node:T6", {"result": "access internal panel", "verified": True}, by="harness")
+ledger.append(f"campaign-{cid}:edge:T4-T6", {"from": "T4", "to": "T6", "unlocked_by": "credential-exploit"}, by="harness")
+```
+
+Reconstructing the graph from this means rebuilding adjacency from every
+edge receipt — but `Ledger` only supports exact-key lookup (`head`,
+`history`), not enumerating keys by pattern, so nothing in ReceiptLedger
+itself can answer "give me every edge in campaign `cid`." That's the same
+gap [EvoBench](https://github.com/Nitin13-git/evobench)'s `Suite` works
+around with its own manifest file listing known task ids
+([L06](l06-closing-the-loop-evobench.md)) — a campaign graph would need the
+same kind of manifest, tracking known node and edge ids separately from the
+ledger that stores their content. A purpose-built graph layer that does
+this automatically, the way `evobench.Suite` does for flat regression
+tasks, is the natural next tool here — not yet built. This is the multi-target
 analogue of [Open Problem #4](../open-problems.md) (cross-harness session
 handoff): the interfaces this course defines are sound per-node, and
 composing them into a graph is still manual.

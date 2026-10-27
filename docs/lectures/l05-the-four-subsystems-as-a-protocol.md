@@ -43,10 +43,15 @@ sequenceDiagram
 ```
 
 Nothing in this sequence is specific to security benchmarking — that's the
-point. The adversarial case this course focuses on just makes every one of
-these four interfaces load-bearing instead of optional, because a
-cooperative task can get away with skipping most of them and an adversarial
-one can't.
+point. A cooperative coding harness can skip most of these steps and
+usually get away with it: no `ScopeEnforcer` (the agent is trusted with
+broad access), no independent `Verifier` (the test suite the agent itself
+wrote is trusted to grade it), state kept only in context (sessions are
+short enough that restarts are rare). Each of those shortcuts is a
+reasonable bet for a cooperative task and a losing one for an adversarial
+task — the adversarial case this course focuses on just removes the option
+to make that bet, which is why all four interfaces appear in the sequence
+above instead of a convenient subset.
 
 ## Conformance, not just convention
 

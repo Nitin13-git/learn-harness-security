@@ -60,7 +60,9 @@ not hypotheticals.
 
 By the end: you'll have built (and run) a scope-enforced sandbox, an
 independently-verified toy exploit, and seen a real benchmark suite mine
-its own regression tests from a real failure — working-level familiarity
+its own regression tests from a real failure — plus the vocabulary to
+reason about what changes when that single run becomes a continuous loop
+(L07) or a multi-target campaign graph (L08). Working-level familiarity
 with every piece, not just the theory.
 
 ## Status

@@ -13,6 +13,14 @@ disappears when the process ends. A context window is the same: everything
 in it is immediately usable by the model, and all of it vanishes the moment
 the session ends (or gets silently truncated once the window fills up).
 
+Rough scale: a 200K-token context window is on the order of 150,000 words —
+roughly the length of a long novel. That sounds like a lot until you've
+watched one hour of tool-heavy exploitation work: port scans, raw HTTP
+responses, stack traces, and failed attempts easily produce more raw text
+than that, which is why "just keep it all in context" stops working well
+before the session itself is done, let alone before a second session needs
+to pick up where the first left off.
+
 Push the analogy one step further, because that's where harness engineering
 actually lives: **every real computer also has a disk.** RAM is for what
 the CPU is working on *right now*; disk is for what has to survive after

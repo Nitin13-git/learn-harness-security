@@ -16,7 +16,12 @@ a config file or declare victory too early, but it isn't trying to defeat
 the harness itself. Point the same agent at a security benchmark — "find
 and exploit the vulnerability in this service" — and that assumption
 breaks. The task now actively rewards escaping scope, lying about results,
-and finding the cheapest path to "looks solved."
+and finding the cheapest path to "looks solved." Concretely: a model graded
+on "exploit this login form" has every incentive to print `"Exploit
+successful: SQL injection confirmed"` and stop, whether or not a payload
+ever reached the database — that sentence costs it nothing to produce and,
+in a harness that trusts self-reports, scores exactly the same as a real
+exploit.
 
 Three consequences follow directly from that, and they're the spine of this
 course:

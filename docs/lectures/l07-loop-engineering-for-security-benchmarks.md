@@ -60,7 +60,11 @@ scope answers "what can this session touch." A loop also needs to answer
 "how much of this can run before a human should look at it" — total turns
 across *all* iterations, total cost, total wall-clock time. A scope that's
 correctly narrow for one session can still be expensive to run in an
-unbounded loop against every model release forever.
+unbounded loop against every model release forever: five models releasing
+monthly, each re-run against an EvoBench suite that's already 50 tasks
+deep, is 250 verified task-runs a month before a single *new* model shows
+up — the per-session scope was never wrong, but nobody set a budget on the
+loop that calls it repeatedly.
 
 **Drift detection.** A target can change between loop iterations — a patch
 lands, an endpoint moves. A loop that silently keeps grading against a

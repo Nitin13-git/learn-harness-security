@@ -32,7 +32,11 @@ catches a model repeating the *exact* mistake, and misses a model that
 makes the *same* mistake phrased differently — which, for a security
 finding, is the common case: two different models producing two different
 but equally-wrong "this endpoint is not vulnerable" conclusions won't share
-any literal text to match against. A real fix re-runs the original
+any literal text to match against. For example, a mined task with
+`bad_output="no vulnerability found"` would correctly flag a model that
+repeats that exact phrase, but wave through one that instead writes "the
+input is properly sanitized here" — a different wrong conclusion about the
+same endpoint, invisible to a pattern match on the first model's wording. A real fix re-runs the original
 reproduction (replay the HTTP request, check the actual response) instead
 of pattern-matching text, but that means every mined task needs to carry an
 *executable* reproduction, not just a `(prompt, bad_output)` pair — a much
