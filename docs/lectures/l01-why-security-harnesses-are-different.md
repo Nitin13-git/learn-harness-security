@@ -1,5 +1,16 @@
 # L01 — Why security-benchmark harnesses are different
 
+!!! quote "The CPU/RAM framing"
+    Andrej Karpathy's shorthand for agent infrastructure: *"The LLM is the
+    CPU, the context window is RAM, and you're the operating system."*
+    (YC AI Startup School, June 2025.) By 2026 he was pushing a sharper
+    version of the same point in talks on agentic engineering (reported via
+    a Sequoia masterclass — I haven't found a primary recording, so treat
+    the framing, not the exact quote, as the citable part): **the thing
+    worth optimizing is the harness around the model, not the model
+    itself.** This course is about building that OS for one specific,
+    harder case.
+
 A coding-agent harness assumes the agent is on your side: it might overreach
 a config file or declare victory too early, but it isn't trying to defeat
 the harness itself. Point the same agent at a security benchmark — "find
@@ -36,5 +47,31 @@ otherwise a "better" score might just mean a looser cage.
 [HarnessBench](https://github.com/Nitin13-git/harnessbench) exists to hold
 everything but the model constant.
 
-The projects in this course build these three properties into a toy
-benchmark step by step, starting with the cage.
+## Cooperative vs. adversarial harness, side by side
+
+```mermaid
+flowchart LR
+    subgraph Cooperative["Cooperative coding harness"]
+        direction TB
+        A1[Agent tries to succeed] --> A2[Occasional overreach<br/>or early stop]
+        A2 --> A3[Loose scope is fine —<br/>nothing exploits the gap]
+    end
+
+    subgraph Adversarial["Security-benchmark harness"]
+        direction TB
+        B1[Agent is graded on<br/>finding gaps] --> B2[Task actively rewards<br/>escaping scope]
+        B2 --> B3[Loose scope IS the<br/>vulnerability]
+    end
+
+    Cooperative -.different assumption.-> Adversarial
+```
+
+The rest of this course builds the three properties above — adversarial
+scope, independent verification, held-constant comparison — into a working
+toy benchmark, one lecture and one project at a time.
+
+**Where to start:** if you've never built a harness at all, read
+[L04 — Context is not free](l04-context-is-not-free.md) first; it's the
+general-purpose intuition this course assumes. If you already think in
+terms of context windows and tool calls, continue to
+[L02](l02-scope-as-a-security-boundary.md).

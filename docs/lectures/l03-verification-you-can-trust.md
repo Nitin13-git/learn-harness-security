@@ -30,7 +30,24 @@ because "0/10 passed" tells you nothing about whether the harness is broken
 or the model is bad, and you need to be able to tell those apart before you
 trust a benchmark number at all.
 
-Project P01 wires a `SubprocessVerifier` against a toy target that only
-reports success via a side channel the agent's sandboxed process can't
-reach, so you can see the difference between a verified result and a
-self-reported one concretely.
+## Self-report vs. independent verification
+
+```mermaid
+flowchart TD
+    Agent[Agent attempts the task] --> Claim["Agent's own report:<br/>'I read the flag'"]
+    Agent --> SideEffect[Actual side effect on the target:<br/>access.log entry written]
+
+    Claim -->|trusted blindly| Wrong[Score recorded —<br/>but claim could be false]
+    SideEffect --> Verifier[HCP Verifier reads the<br/>independent channel]
+    Verifier -->|evidence-backed| Right[Score recorded —<br/>backed by evidence]
+
+    style Wrong fill:#5c1a1a,stroke:#ff6b6b
+    style Right fill:#1a3a1a,stroke:#51cf66
+```
+
+Project [P01](../projects/p01-verify-dont-trust.md) wires a
+`SubprocessVerifier` against a toy target that only reports success via a
+side channel the agent's sandboxed process can't reach, so you can see the
+difference between a verified result and a self-reported one concretely.
+
+**Next:** [L04 — Context is not free](l04-context-is-not-free.md).

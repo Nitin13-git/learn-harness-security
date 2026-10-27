@@ -24,9 +24,36 @@ directly — the three points almost everything else in the standard library
 funnels through — so the check happens whether or not the agent's own logic
 remembers to ask permission.
 
+## How a single request flows through the cage
+
+```mermaid
+sequenceDiagram
+    participant Agent as Agent code
+    participant Guard as AgentCage guard<br/>(patches open/Popen/connect)
+    participant Scope as Scope (deny by default)
+    participant World as Filesystem / process / network
+
+    Agent->>Guard: open(path) / subprocess.run(cmd) / socket.connect(host)
+    Guard->>Scope: allows(kind, value)?
+    alt pattern explicitly granted
+        Scope-->>Guard: True
+        Guard->>World: forward the real call
+        World-->>Agent: result
+    else not granted
+        Scope-->>Guard: False
+        Guard-->>Agent: raise CageViolation
+    end
+```
+
+The agent's own code never gets a vote — the guard sits *below* it, at the
+standard-library entry point, so there's no "remember to check scope first"
+step for a task to skip.
+
 **A practical exercise:** take a scope granting a target IP on a benchmark
 network and nothing else, and verify two things independently: that a
 `subprocess.run(["curl", other_host])` call raises `CageViolation`, and that
 a call to the granted host still succeeds. If either fails, the scope isn't
-actually a boundary — it's a suggestion. Project P01 builds exactly this
-check against a toy vulnerable target.
+actually a boundary — it's a suggestion. Project [P01](../projects/p01-verify-dont-trust.md)
+builds exactly this check against a toy vulnerable target.
+
+**Next:** [L03 — Verification you can trust](l03-verification-you-can-trust.md).
