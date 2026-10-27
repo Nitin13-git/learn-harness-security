@@ -9,7 +9,7 @@ flowchart LR
     V[Verification] --> P1[1. Verification that<br/>isn't a string match]
     V --> P3[3. Findings that need<br/>human judgment]
     S[Scope] --> P2[2. Scope that negotiates<br/>instead of being declared]
-    L[Lifecycle] --> P4[4. Cross-harness<br/>session handoff]
+    L[Lifecycle] --> P4["4. Cross-harness session<br/>handoff (partially closed)"]
     St[State] --> P4
     Meta[Meta: the benchmark itself] --> P5[5. Benchmarking<br/>the benchmark]
 
@@ -71,17 +71,27 @@ reviewer. [HarnessBench](lectures/l01-why-security-harnesses-are-different.md)'s
 pattern for "verification that sometimes has to escalate to a human in the
 loop without blocking the rest of the benchmark run."
 
-## 4. Cross-harness session handoff
+## 4. Cross-harness session handoff — partially closed
 
-[HCP](lectures/l05-the-four-subsystems-as-a-protocol.md) standardizes the
-*interfaces* one harness needs, but nothing here has been tested across two
-*different* agent runtimes — a session started under Claude Code,
-checkpointed, and resumed under a different tool entirely, with
-`ReceiptLedger` state and `AgentCage` scope carrying over intact. That's the
-actual promise implied by calling this a protocol rather than a library
-(the same way MCP's value is that *any* MCP client can talk to *any* MCP
-server) — and it's unproven here. The four interfaces exist; interop
-between two independent implementations of them does not, yet.
+**Update:** [HCP's `interop/` directory](https://github.com/Nitin13-git/hcp/tree/main/interop)
+now proves a narrower but real version of this: a session started by
+HCP's *Python* reference SDK is resumed, continued, and verified by its
+*TypeScript* reference SDK, through nothing but a shared `state.json` —
+each process independently reads the other language's writes and the
+script fails loudly if that doesn't actually work. That's genuine evidence
+the `StateStore` and `SessionLifecycle` interfaces compose across
+independent implementations, not just across copies of the same code.
+
+What's still open: that proof is cross-*language* (two reference SDKs of
+the same protocol), not cross-*runtime* — a session started under Claude
+Code, checkpointed, and resumed under a genuinely different agent tool
+entirely, with `ReceiptLedger` state and `AgentCage` scope carrying over
+intact, still hasn't been tested. Nor has `ScopeEnforcer` or `Verifier`
+interop — the Python↔TypeScript proof only exercised state and lifecycle,
+because that's what the handoff scenario needed. The actual promise
+implied by calling this a protocol rather than a library (the way MCP's
+value is that *any* MCP client can talk to *any* MCP server) is closer
+than it was, not fully there.
 
 ## 5. Benchmarking the benchmark
 
