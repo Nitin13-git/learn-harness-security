@@ -64,3 +64,62 @@
 .md-typeset code {
   background-color: rgba(255, 107, 107, 0.08);
 }
+
+/* --- Headings and body text: the part that was still plain black/white --- */
+
+/* H1 page titles: red, with a thin gradient underline instead of the
+   default flat black/grey rule */
+.md-typeset h1 {
+  color: #ff6b6b;
+  font-weight: 700;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #ff6b6b, #7209b7, #118ab2) 1;
+  padding-bottom: 0.3rem;
+}
+
+/* H2 section headings: left accent bar, like a terminal section marker,
+   instead of plain text with a flat underline */
+.md-typeset h2 {
+  border-left: 4px solid #ff6b6b;
+  padding-left: 0.6rem;
+  color: var(--md-default-fg-color);
+}
+
+/* H3: smaller accent marker, amber instead of red, so the hierarchy reads
+   by color as well as size */
+.md-typeset h3 {
+  border-left: 3px solid var(--harness-lifecycle);
+  padding-left: 0.5rem;
+}
+
+/* The first paragraph of a page (the "lead") is slightly larger and in
+   the muted foreground tone, so pages open with visual weight instead of
+   starting identical to body copy */
+.md-typeset > p:first-of-type {
+  font-size: 1.1em;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Bold lead-ins ("**Deny by default.**") are this course's way of marking
+   a named principle inline — give them an accent color so they read as
+   signal, not just heavier-weight black/white text */
+.md-typeset strong {
+  color: #ffa8a8;
+}
+[data-md-color-scheme="default"] .md-typeset strong {
+  color: #c92a2a;
+}
+
+/* Horizontal rules (used between a lecture's closing note and nothing
+   else): a gradient instead of a flat 1px grey line */
+.md-typeset hr {
+  height: 2px;
+  border: none;
+  background: linear-gradient(90deg, #ff6b6b, transparent);
+}
+
+/* Tables: header row picks up the red accent instead of plain grey,
+   useful for the scoreboard and coverage-comparison tables */
+.md-typeset table:not([class]) th {
+  background-color: rgba(255, 107, 107, 0.12);
+}
