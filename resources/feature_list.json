@@ -1,0 +1,12 @@
+{
+  "_comment": "Template progress file. Each entry is one benchmark task; `verified` must be set by the independent verification step, never by the agent itself.",
+  "tasks": [
+    {
+      "id": "example-task-1",
+      "description": "Reach the target's /flag endpoint",
+      "status": "not_started",
+      "verified": false,
+      "evidence": null
+    }
+  ]
+}
